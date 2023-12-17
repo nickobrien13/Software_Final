@@ -1,0 +1,18 @@
+import os
+os.chdir('/Users/nick/downloads')
+import pandas as pd 
+import matplotlib.pyplot as plt
+import numpy as np
+
+with open('AAPL_prices.txt', 'r') as file:
+    lines = file.readlines()
+
+data = {'Trading Price': [float(line.strip()) for line in lines]}
+df = pd.DataFrame(data)
+
+df['Date'] = np.linspace(1, 252, len(df))
+plt.plot(df['Date'], df['Trading Price'])
+plt.title('Apple Stock Price, Nov 2019 to Nov 2020')
+plt.ylabel('Trading Price')
+plt.xlabel('Day')
+plt.show()
